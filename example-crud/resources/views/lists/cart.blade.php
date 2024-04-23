@@ -35,11 +35,11 @@
                         </div>
                     </div>
                 </td>
-                <td data-th="Price">Rs. {{ $item->price }}</td>
+                <td data-th="Price"><i class="fas fa-rupee-sign"></i> {{ $item->price }}</td>
                 <td data-th="Quantity">
                     <input type="number" value="{{ $item->quantity }}" class="form-control quantity update-cart" />
                 </td>
-                <td data-th="Subtotal" class="text-center">Rs. {{ $item->price * $item->quantity }}</td>
+                <td data-th="Subtotal" class="text-center"><i class="fas fa-rupee-sign"></i> {{ $item->price * $item->quantity }}</td>
                 <td class="actions" data-th="">
                     <button class="btn btn-danger btn-sm remove-from-cart" data-id="{{ $item->id }}">Delete</button>
                 </td>
@@ -52,7 +52,7 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="5" class="text-right"><h3><strong>Total Rs. {{ $total }}</strong></h3></td>
+            <td colspan="5" class="text-right"><h3><strong>Total <i class="fas fa-rupee-sign"></i> {{ $total }}</strong></h3></td>
         </tr>
         <tr>
             <td colspan="5" class="text-right">
