@@ -1,0 +1,6 @@
+/* public/css/styles.css */
+
+label.error {
+    color: red;
+    font-size: 14px; /* Adjust font size as needed */
+}
