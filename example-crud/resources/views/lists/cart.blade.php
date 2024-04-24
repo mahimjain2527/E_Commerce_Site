@@ -44,7 +44,7 @@
                     <button class="btn btn-danger btn-sm remove-from-cart" data-id="{{ $item->id }}">Delete</button>
                 </td>
             </tr>
-        @empty
+            @empty
             <tr>
                 <td colspan="5">Your cart is empty.</td>
             </tr>
@@ -66,6 +66,8 @@
 
                
 <script type="text/javascript">
+
+
   
     $(".update-cart").change(function (e) {
         e.preventDefault();
@@ -85,27 +87,61 @@
             }                                                                           
         });                                   
     });
-  
-    $(".remove-from-cart").click(function (e) {
-        e.preventDefault();
-        
 
-        var ele = $(this);
-  
-        if(confirm("Are you sure want to remove?")) {
-            $.ajax({
-                url: '{{ route('remove.from.cart') }}',
-                method: "DELETE",
-                data: {
-                    _token: '{{ csrf_token() }}', 
-                    id: ele.parents("tr").attr("data-id")
-                },
-                success: function (response) {
-                    window.location.reload();
-                }
+
+    const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+       
+        cancelButton: "btn btn-danger",
+        confirmButton: "btn btn-success"
+    },
+    buttonsStyling: false
+    });
+
+    $(".remove-from-cart").click(function (e) {
+    e.preventDefault();
+
+    var ele = $(this);
+
+    swalWithBootstrapButtons.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+        $.ajax({
+            url: '{{ route('remove.from.cart') }}',
+            method: "DELETE",
+            data: {
+            _token: '{{ csrf_token() }}',
+            id: ele.parents("tr").attr("data-id")
+            },
+            success: function (response) {
+            swalWithBootstrapButtons.fire({
+                title: "Deleted!",
+                text: "Your item has been deleted.",
+                icon: "success"
+            }).then(() => {
+                window.location.reload();
             });
+            }
+        });
+        } else if (
+        result.dismiss === Swal.DismissReason.cancel
+        ) {
+        swalWithBootstrapButtons.fire({
+            title: "Cancelled",
+            text: "Your cart item is safe",
+            icon: "error"
+        });
         }
     });
+    });
+
   
 </script>
 

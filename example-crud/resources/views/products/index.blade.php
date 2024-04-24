@@ -33,7 +33,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.70/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" crossorigin="anonymous"></script>
+    
 
+ 
 </head>
 <body>      
     @yield( 'template' )
@@ -172,7 +174,6 @@
                     ]
                 });
 
-                // Checkbox click event handler
                 $('#select_all').on('click', function(){
                     $('.data-table input[type="checkbox"]').prop('checked', this.checked);
                 });
@@ -230,6 +231,7 @@
                         });
                     }
                 });
+
 
                 $('#save_button').click(function(e) {
                     e.preventDefault();

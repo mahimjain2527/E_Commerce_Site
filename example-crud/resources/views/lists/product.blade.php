@@ -42,8 +42,8 @@
                 <div class="caption">                  
                     <h4>{{ $product->name }}</h4>
                     <p>{{ $product->detail }}</p>
-                    <p><span><del>{{ number_format($product->price) }}</del></span>
-                       <b> <span> <i class="fas fa-rupee-sign"></i> {{ number_format($product->price * 0.9) }} </span></b></p>
+                    <p><span><del>{{ number_format($product->price * 1.10) }}</del></span>
+                       <b> <span> <i class="fas fa-rupee-sign"></i> {{ number_format($product->price) }} </span></b></p>
                     <p><strong>Quantity: </strong> {{ $product->quantity }}</p>
                     <p class="btn-holder"><a href="{{ route('add.to.cart', $product->id) }}" class="btn btn-primary btn-block text-center" role="button">Add to cart</a> </p>
                 </div>
