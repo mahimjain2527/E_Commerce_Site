@@ -9,6 +9,7 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductlistController;
 use App\Http\Controllers\ProductAjaxController;
+use App\Http\Controllers\ResetPasswordController;
 
 use App\Http\Controllers\RazorpayPaymentController;
 
@@ -39,6 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
 });
+
+
 
 require __DIR__.'/auth.php';
 
