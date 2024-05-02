@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductlistController;
 use App\Http\Controllers\ProductAjaxController;
 use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\VerifyController;
 
 use App\Http\Controllers\RazorpayPaymentController;
 
@@ -46,9 +47,17 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Auth::routes();
-
+// Auth::routes(['verify' => true]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/verify-email',[VerifyController::class, 'verifymail'])->name('products.verifymail');
+Route::get('/email/verify/{id}', [VerifyController::class, 'verify'])->name('products.verify')->middleware('signed');
+// In your routes/web.php
+// Route::get('/email/verify/{id}', 'Auth\VerifyController@verify')->name('products.verify')->middleware('signed');
+
+// Route::get('/login', 'Auth\LoginController@authenticated')->middleware('guest');
+
+
 
 // Route::get('/products-ajax-crud', [ProductAjaxController::class, 'index'])->name('productAjax');
 Route::resource('products-ajax-crud', ProductAjaxController::class);

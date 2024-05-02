@@ -41,21 +41,21 @@ class ProductController extends Controller
         $categories = null;
         $selectedUserId = null;
         $selectedCategoryId = $request->get('category_id', null);
-
-        if (Auth::user()->isAdmin()) {
+    
+        if (Auth::check() && Auth::user()->isAdmin()) {
             $users = User::where('role', 'user')->get();
             $categories = Category::all();
         }
-
+    
         if ($request->ajax()) {
             $selectedUserId = $request->user_id;
             $query = Product::query();
-
+    
             if ($selectedUserId) {
                 $query->where('user_id', $selectedUserId);
             } else {
                 $user = Auth::user();
-                if (!$user->isAdmin()) {
+                if ($user && !$user->isAdmin()) {
                     $query->where('user_id', $user->id);
                 }
             }
@@ -64,7 +64,7 @@ class ProductController extends Controller
             if ($selectedCategoryId) {
                 $query->where('category_id', $selectedCategoryId);
             }
-
+    
             // Price Filters
             if ($request->has('min_price') && $request->min_price !== null) {
                 $query->where('price', '>=', $request->min_price);
@@ -72,10 +72,10 @@ class ProductController extends Controller
             if ($request->has('max_price') && $request->max_price !== null) {
                 $query->where('price', '<=', $request->max_price);
             }
-
+    
             // Retrieve filtered data
             $data = $query->latest()->get();
-
+    
             // Return data in DataTables format
             return Datatables::of($data)
                 ->addIndexColumn()
@@ -97,10 +97,11 @@ class ProductController extends Controller
                 ->rawColumns(['checkbox', 'action'])
                 ->make(true);
         }
-
+    
         // If not an AJAX request, return the view with user and category data
         return view('products.index', compact('users', 'selectedUserId', 'categories', 'selectedCategoryId'));
     }
+    
 
 
     public function create()
@@ -207,5 +208,7 @@ class ProductController extends Controller
 
         return redirect()->route('products.index')->with('success', 'Category created successfully.');
     }
+
+    
 
 }

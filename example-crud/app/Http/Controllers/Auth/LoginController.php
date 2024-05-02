@@ -30,13 +30,29 @@ class LoginController extends Controller
     // protected $redirectTo = '/home';
 
 
-    protected function authenticated(Request $request, $user)
-{
-    if (Auth::check() && $user->role === 'customer') {
-        return redirect('/mainpage');
+//     protected function authenticated(Request $request, $user)
+// {
+//     if (Auth::check() && $user->role === 'customer') {
+//         return redirect('/mainpage');
+//     }
+//     return redirect('/home'); // Redirect to dashboard or any other default page for non-customers
+// }
+
+protected function authenticated(Request $request, $user)
+    {
+        // Check if the user's email is verified
+        if (is_null($user->email_verified_at)) {
+            return redirect('/verify-email'); // Redirect to the email verification notice page
+        }
+
+        // Check user role and redirect accordingly
+        if ($user->role === 'customer') {
+            return redirect('/mainpage'); // Redirect to customer specific page
+        }
+
+        return redirect('/home'); // Redirect to dashboard or any other default page for other roles
     }
-    return redirect('/home'); // Redirect to dashboard or any other default page for non-customers
-}
+
 
     /**
      * Create a new controller instance.

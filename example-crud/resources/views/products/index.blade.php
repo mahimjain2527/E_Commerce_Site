@@ -47,7 +47,7 @@
         <a class="btn btn-success" href="{{ route('products.createCategory') }}" id="createNewCategory"> Create New Category</a>
 
 
-        @if(Auth::user()->isAdmin() && $users)
+        @if(Auth::check() && Auth::user()->isAdmin() && $users)
             <div class="form-group">
                 <label for="user_dropdown">Select User:</label>
                 <select class="form-control" id="user_dropdown">
