@@ -14,6 +14,7 @@ use App\Http\Controllers\ProductlistController;
 use App\Http\Controllers\ProductAjaxController;
 use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\VerifyController;
+use App\Http\Controllers\OrderController;
 
 use App\Http\Controllers\RazorpayPaymentController;
 
@@ -132,6 +133,11 @@ Route::post('/razorpay-payment', [RazorpayPaymentController::class, 'store'])->n
 // ***** Sample Task Route ******
 Route::get('/person', [PersonController::class, 'index'])->name('person.index');
 Route::delete('/person/{person}', [PersonController::class, 'destroy'])->name('person.destroy');
+
+
+Route::get('products/orders', [OrderController::class, 'index'])->name('orders.index');
+Route::post('products/orders/list', [OrderController::class, 'list'])->name('orders.list');
+
 
 
 
