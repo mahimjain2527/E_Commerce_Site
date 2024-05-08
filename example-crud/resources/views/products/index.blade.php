@@ -49,8 +49,8 @@
 
         @if(Auth::check() && Auth::user()->isAdmin() && $users)
             <div class="form-group">
-                <label for="user_dropdown">Select User:</label>
-                <select class="form-control" id="user_dropdown">
+                {{-- <label for="user_dropdown">Select User:</label> --}}
+                <select class="form-control" id="user_dropdown" style="border: 1px solid black">
                     <option value="">Select User</option>
                     @foreach($users as $user)
                     <option value="{{ $user->id }}" {{ $selectedUserId == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>

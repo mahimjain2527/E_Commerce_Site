@@ -9,6 +9,9 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 
+    
+
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
@@ -43,7 +46,7 @@
             <li class="nav-item">
               <a class="nav-link text-white" href=" {{ route('orders.index') }}">
                 <div class="text-white text-center me-2 d-flex align-items-center justify-content-center active">
-                  <i class="material-icons opacity-10">person</i>
+                 <i class="material-icons opacity-10">person</i>
                 </div>
                 <span class="nav-link-text ms-1">Orders</span>
               </a>
