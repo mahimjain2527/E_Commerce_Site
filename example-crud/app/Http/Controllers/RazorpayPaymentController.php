@@ -78,6 +78,7 @@ class RazorpayPaymentController extends Controller
                         'product_id' => $item->product_id,
                         'name' => $item->name,
                         'quantity' => $item->quantity, 
+                        
                     ]);
                 }
 

@@ -138,6 +138,8 @@ Route::delete('/person/{person}', [PersonController::class, 'destroy'])->name('p
 Route::get('products/orders', [OrderController::class, 'index'])->name('orders.index');
 Route::post('products/orders/list', [OrderController::class, 'list'])->name('orders.list');
 
+Route::get('mainpage/myorders',[OrderController::class, 'myorders'])->name('orders.myorders');
+
 
 
 
